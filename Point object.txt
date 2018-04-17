@@ -1,0 +1,213 @@
+#include <iostream>
+#include "point.h"
+using namespace std;
+
+int main()
+	{
+		point a;
+		point b;
+		point *c;
+		point d;
+
+		a = (point)2.0;
+		b = point(3.0, 4.0);
+		c = new point(5.0, 6.0);
+		c->display();
+		/*cout << *c;
+
+		d = a + b;
+		d.display();
+		d = a + b + *c;
+		d.display();
+
+		if (b>a)
+		{
+			cout << "b>a" << endl;
+		}
+		else
+		{
+			cout << "b<=a" << endl;
+		}
+
+		d = a + 10.0;
+		d.display();
+		d=10.0+a;
+		d.display();
+
+		a = b;
+		a = b = c;
+
+		*/
+		return (0);
+}
+
+
+
+
+#include <iostream>
+using namespace std;
+
+class point
+{
+public:
+	//CONSTRUCTORS
+	point()
+	{
+		this->x = 0;
+		this->y = 0;
+	}
+	point(float a, float b)
+	{
+
+		this->x = a;
+		this->y = b;
+	}
+	point(point& clone)
+	{
+
+		this->x = clone.x;
+		this->y = clone.y;
+	}
+	void display()
+	{
+		cout << this->x << ",";
+		cout << this->y << endl;
+
+	}
+	//SETTERS
+	void setx(float set1)
+	{
+		this->x = set1;
+	}
+	void sety(float set2)
+	{
+		this->y = set2;
+	}
+	void setxy(float x, float y)
+	{
+		this->x = x;
+		this->y = y;
+	}
+	//GETTTERS
+	float getx()
+	{
+		return this->x;
+	}
+	float gety()
+	{
+		return this->y;
+	}
+
+	point(float p)
+	{
+
+	}
+	//ADDERS
+
+
+
+	point add2(point z2)
+	{
+		point z3;
+		z3.x = this->x + z2.x;
+		z3.y = this->y + z2.y;
+		return z3;
+	}
+	point operator + (point & z1)
+	{
+		point t;
+		t.x = this->x + z1.x;
+		t.y = this->y + z1.y;
+		return t;
+	}
+
+	point operator + (float a)
+	{
+		point t;
+		t.x = this->x + a;
+		t.y = this->y + a;
+		return t;
+	}
+
+	//    point operator + (point z1)
+	//	{
+	//	    point t;
+	//	    t.x=z1.x;
+	//	    t.y=z1.y;
+	//	    return t;
+	//	}
+	//SUBTRACTOR
+	point sub(point z2)
+	{
+		point z3;
+		z3.x = z2.x - this->x;
+		z3.y = z2.y - this->y;
+		return z3;
+
+	}
+	point operator - (point z1)
+	{
+		point t;
+		t.x = this->x - z1.x;
+		t.y = this->y - z1.y;
+		return t;
+	}
+
+	bool operator > (point & c)
+	{
+		if (this->x>c.x)
+		{
+			return true;
+		}
+		if ((this->x == c.x) && (this->y>c.y))
+			return true;
+		return false;
+	}
+
+	bool operator < (point & c)
+	{
+		if (this->x<c.x)
+		{
+			return true;
+		}
+		if ((this->x == c.x) && (this->y<c.y))
+		{
+			return true;
+		}
+		return false;
+	}
+	//	void point =(point &c)
+	//	{
+	//	    this->x=c.x;
+	//	    this->y=c.y;
+	//	}
+
+	bool operator == (point & c)
+	{
+		if ((this->x == c.x) && (this->y == c.y))
+			return true;
+		return false;
+	}
+	point operator()(float a, float b)
+	{
+		point r;
+		this->x = a;
+		this->y = b;
+		return r;
+	}
+	void operator ++ ()
+	{
+		point t;
+		this->x++;
+		this->y++;
+	}
+private:
+	float x;
+	float y;
+
+};
+
+ostream & operator << (ostream & out, point & ob)
+{
+	return out << ob.getx() << "/" << ob.gety() << endl;
+}
